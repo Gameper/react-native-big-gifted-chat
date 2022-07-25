@@ -24,6 +24,7 @@ import TypingIndicator from './TypingIndicator'
 
 import { StylePropType } from './utils'
 import { warning } from './logging'
+import BigList from 'react-native-big-list'
 
 const styles = StyleSheet.create({
   container: {
@@ -344,7 +345,7 @@ export default class MessageContainer<
         {this.state.showScrollBottom && this.props.scrollToBottom
           ? this.renderScrollToBottomWrapper()
           : null}
-        <FlatList
+        <BigList
           ref={this.props.forwardRef}
           extraData={[this.props.extraData, this.props.isTyping]}
           keyExtractor={this.keyExtractor}
@@ -370,6 +371,33 @@ export default class MessageContainer<
           onEndReachedThreshold={0.1}
           {...this.props.listViewProps}
         />
+
+        {/* <FlatList
+          ref={this.props.forwardRef}
+          extraData={[this.props.extraData, this.props.isTyping]}
+          keyExtractor={this.keyExtractor}
+          enableEmptySections
+          automaticallyAdjustContentInsets={false}
+          inverted={inverted}
+          data={this.props.messages}
+          style={styles.listStyle}
+          contentContainerStyle={styles.contentContainerStyle}
+          renderItem={this.renderRow}
+          {...this.props.invertibleScrollViewProps}
+          ListEmptyComponent={this.renderChatEmpty}
+          ListFooterComponent={
+            inverted ? this.renderHeaderWrapper : this.renderFooter
+          }
+          ListHeaderComponent={
+            inverted ? this.renderFooter : this.renderHeaderWrapper
+          }
+          onScroll={this.handleOnScroll}
+          scrollEventThrottle={100}
+          onLayout={this.onLayoutList}
+          onEndReached={this.onEndReached}
+          onEndReachedThreshold={0.1}
+          {...this.props.listViewProps}
+        /> */}
       </View>
     )
   }
